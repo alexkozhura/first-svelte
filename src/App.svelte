@@ -1,16 +1,32 @@
 <script>
-	let name = 'world';
-	let beltColor = 'black';
+	import Modal from './Modal.svelte';
+	let people = [
+		{ name: 'Wesley', beltColor: 'black', age: 27, id: 1 },
+		{ name: 'Sarah', beltColor: 'brown', age: 28, id: 2},
+		{ name: 'Mike', beltColor: 'blue', age: 29, id: 3 }
+	];
 
-	const handleClick = () => {
-		beltColor = 'orange';
+	const handleClick = (id) => {
+		people = people.filter(person => person.id != id)
 	}
+
+	let num = 5;
 </script>
 
+<Modal />
 <main>
-	<h1>Hello {name}!</h1>
-	<p>{beltColor} belt</p>
-	<button on:click={handleClick}>update belt color</button>
+	{#each people as person (person.id)}
+		<div>
+			<h4>{person.name}</h4>
+			{#if person.beltColor === 'black'}
+				<p><strong>MASTER NINJA</strong></p>
+			{/if}
+			<p>{person.age} years old, {person.beltColor} belt</p>
+			<button on:click={() => handleClick(person.id)}>delete</button>
+		</div>
+	{:else}
+		<p>There are no people to show...</p>
+	{/each}
 </main>
 
 <style>
