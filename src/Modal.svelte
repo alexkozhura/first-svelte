@@ -1,11 +1,14 @@
 <script>
-    let showModal = true;
+    export let message = "default value";
+    export let showModal = false;
+    export let isPromo = false;
 </script>
 
 {#if showModal}
-<div class="backdrop">
+<!-- will apply class 'promo' if isPromo evaluates to true -->
+<div class="backdrop" class:promo={isPromo}>
     <div class="modal">
-        <p>Sign up for offers!</p>
+        <p>{message}</p>
     </div>
 </div>
 {/if}
@@ -24,5 +27,9 @@
         margin: 10% auto;
         text-align: center;
         background: white;    
+    }
+    .promo .modal {
+        background: crimson;
+        color: white;
     }
 </style>

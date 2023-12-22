@@ -1,5 +1,8 @@
 <script>
 	import Modal from './Modal.svelte';
+
+	let showModal = false;
+
 	let people = [
 		{ name: 'Wesley', beltColor: 'black', age: 27, id: 1 },
 		{ name: 'Sarah', beltColor: 'brown', age: 28, id: 2},
@@ -13,7 +16,7 @@
 	let num = 5;
 </script>
 
-<Modal />
+<Modal message="Hey, I am a prop value." showModal={showModal} />
 <main>
 	{#each people as person (person.id)}
 		<div>
