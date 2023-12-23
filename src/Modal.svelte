@@ -1,14 +1,13 @@
 <script>
-    export let message = "default value";
-    export let showModal = false;
+    export let showModal = true;
     export let isPromo = false;
 </script>
 
 {#if showModal}
 <!-- will apply class 'promo' if isPromo evaluates to true -->
-<div class="backdrop" class:promo={isPromo}>
+<div class="backdrop" class:promo={isPromo} on:click|self>
     <div class="modal">
-        <p>{message}</p>
+        <slot></slot>
     </div>
 </div>
 {/if}
