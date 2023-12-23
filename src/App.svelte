@@ -16,13 +16,18 @@
 
 	const handleClick = (id) => {
 		people = people.filter(person => person.id != id)
-	}
+	};
 
-	let num = 5;
+	const addPerson = (e) => {
+		const person = e.detail;
+		people = [...people, person];
+		// to close the Modal after adding a person
+		showModal = false;
+	};
 </script>
 
 <Modal {showModal} on:click={toggleModal}>
-	<AddPersonForm />
+	<AddPersonForm on:addPerson={addPerson} />
 </Modal>
 <main>
 	<button on:click={toggleModal}>Open Modal</button>
